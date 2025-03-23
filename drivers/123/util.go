@@ -49,11 +49,11 @@ const (
 func signPath(path string, os string, version string) (k string, v string) {
 	table := []byte{'a', 'd', 'e', 'f', 'g', 'h', 'l', 'm', 'y', 'i', 'j', 'n', 'o', 'p', 'k', 'q', 'r', 's', 't', 'u', 'b', 'c', 'v', 'w', 's', 'z'}
 	random := fmt.Sprintf("%.f", math.Round(1e7*rand.Float64()))
-	现在 := time.Now().In(time.FixedZone("CST", 8*3600))
+	now := time.Now().In(time.FixedZone("CST", 8*3600))
 	timestamp := fmt.Sprint(now.Unix())
-	现在Str := []byte(now.Format("200601021504"))
+	nowStr := []byte(now.Format("200601021504"))
 	for i := 0; i < len(nowStr); i++ {
-		现在Str[i] = table[nowStr[i]-48]
+		nowStr[i] = table[nowStr[i]-48]
 	}
 	timeSign := fmt.Sprint(crc32.ChecksumIEEE(nowStr))
 	data := strings.Join([]string{timestamp, random, path, os, version, timeSign}, "|")
