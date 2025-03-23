@@ -49,11 +49,11 @@ const (
 func signPath(path string, os string, version string) (k string, v string) {
 	table := []byte{'a', 'd', 'e', 'f', 'g', 'h', 'l', 'm', 'y', 'i', 'j', 'n', 'o', 'p', 'k', 'q', 'r', 's', 't', 'u', 'b', 'c', 'v', 'w', 's', 'z'}
 	random := fmt.Sprintf("%.f", math.Round(1e7*rand.Float64()))
-	now := time.Now().In(time.FixedZone("CST", 8*3600))
+	现在 := time.Now().In(time.FixedZone("CST", 8*3600))
 	timestamp := fmt.Sprint(now.Unix())
-	nowStr := []byte(now.Format("200601021504"))
+	现在Str := []byte(now.Format("200601021504"))
 	for i := 0; i < len(nowStr); i++ {
-		nowStr[i] = table[nowStr[i]-48]
+		现在Str[i] = table[nowStr[i]-48]
 	}
 	timeSign := fmt.Sprint(crc32.ChecksumIEEE(nowStr))
 	data := strings.Join([]string{timestamp, random, path, os, version, timeSign}, "|")
@@ -163,9 +163,10 @@ func (d *Pan123) login() error {
 		SetHeaders(map[string]string{
 			"origin":      "https://www.123pan.com",
 			"referer":     "https://www.123pan.com/",
-			"user-agent":  "Dart/2.19(dart:io)-alist",
-			"platform":    "web",
-			"app-version": "3",
+			"user-agent":  "123pan/v2.4.0(Android_7.1.2;Xiaomi)",
+			"platform":    "android",
+			"app-version": "61",
+			"x-app-version": "2.4.0",
 			//"user-agent":  base.UserAgent,
 		}).
 		SetBody(body).Post(SignIn)
