@@ -206,7 +206,7 @@ do:
 		"user-agent":    "123pan/v2.4.0(Android_7.1.2;Xiaomi)",
 		"platform":      "android",
 		"app-version":   "61",
-		"x-app-version": "2.4.0"
+		"x-app-version": "2.4.0",
 		//"user-agent":    base.UserAgent,
 	})
 	if callback != nil {
