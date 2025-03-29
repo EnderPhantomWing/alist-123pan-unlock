@@ -34,4 +34,5 @@ jobs:
       - name: Upload assets
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: 123panunlock
           files: build/compress/*
