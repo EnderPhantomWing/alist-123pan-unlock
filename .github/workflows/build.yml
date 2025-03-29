@@ -56,6 +56,8 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
+        env:
+          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
         with:
-          name: alist_${{ env.SHA }}_${{ matrix.target }}
+          tag_name: alist
           path: build/*
