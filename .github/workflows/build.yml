@@ -1,4 +1,4 @@
-name: build
+sename: build
 
 on:
   push:
@@ -54,10 +54,15 @@ jobs:
             github.com/alist-org/alist/v3/internal/conf.Version=$tag
             github.com/alist-org/alist/v3/internal/conf.WebVersion=dev
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Release
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
+        if: startsWith(github.ref, 'refs/tags')
         with:
-          tag_name: alist
+          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          body: Routinely synchronize the official version.
+          draft: false
+          prerelease: true
           path: build/*
